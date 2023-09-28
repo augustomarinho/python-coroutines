@@ -8,9 +8,9 @@ from util.measure import measure_performance
 
 @measure_performance
 async def main():
+    print("Case 7")
     print_info(f"started at {time.strftime('%X')}")
     for i in range(100):
-        print_info(f"loop {i}")
         await asyncio.to_thread(blocking_io)
     print_info(f"finished at {time.strftime('%X')}")
 

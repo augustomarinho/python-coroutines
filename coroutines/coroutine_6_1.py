@@ -15,11 +15,11 @@ def run_async_function(loop):
 async def main():
     loop = asyncio.get_running_loop()
 
+    print("Case 6_1")
     print_info(f"started at {time.strftime('%X')}")
     with futures.ThreadPoolExecutor(max_workers=3,
                                     thread_name_prefix="custom") as pool:
-        for i in range(100):
-            print_info(f"loop {i}")
+        for i in range(100000):
             loop.run_in_executor(pool, block_cpu, 1000)
     print_info(f"finished at {time.strftime('%X')}")
 

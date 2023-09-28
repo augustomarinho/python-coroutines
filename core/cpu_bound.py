@@ -10,5 +10,5 @@ def block_cpu(number):
     f = 1
     for i in range(2, number + 1):
         f *= i
-    print_info(f" factorial({number}) = {f}")
+    print_info(f"factorial({number}) = {f}")
     return f
