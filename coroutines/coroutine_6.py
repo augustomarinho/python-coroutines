@@ -5,14 +5,6 @@ from core.cpu_bound import block_cpu
 from util.console import print_info
 from util.measure import measure_performance
 
-
-# @measure_performance
-# async def main():
-#     print_info(f"started at {time.strftime('%X')}")
-#     for i in range(100000):
-#         await block_cpu(1000)
-#     print_info(f"finished at {time.strftime('%X')}")
-
 @measure_performance
 async def main():
     print_info(f"started at {time.strftime('%X')}")
