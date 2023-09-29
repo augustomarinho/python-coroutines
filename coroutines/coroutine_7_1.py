@@ -9,7 +9,8 @@ from util.measure import measure_performance
 
 @measure_performance
 async def main():
-    loop = asyncio.get_running_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
     print("Case 7_1")
     print_info(f"started at {time.strftime('%X')}")
@@ -17,6 +18,8 @@ async def main():
                                     thread_name_prefix="custom") as pool:
         for i in range(100):
             loop.run_in_executor(pool, blocking_io)
+
+    loop.close()
     print_info(f"finished at {time.strftime('%X')}")
 
 

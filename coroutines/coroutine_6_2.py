@@ -15,13 +15,16 @@ def run_async_function():
 
 @measure_performance
 async def main():
-    loop = asyncio.get_running_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
     print("Case 6_2")
     print_info(f"started at {time.strftime('%X')}")
     with futures.ProcessPoolExecutor(max_workers=3) as pool:
         for i in range(100000):
             loop.run_in_executor(pool, block_cpu, 1000)
+
+    loop.close()
     print_info(f"finished at {time.strftime('%X')}")
 
 if __name__ == '__main__':
