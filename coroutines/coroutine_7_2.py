@@ -9,16 +9,14 @@ from util.measure import measure_performance
 
 @measure_performance
 async def main():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+    loop = asyncio.get_event_loop()
 
     print("Case 7_2")
     print_info(f"started at {time.strftime('%X')}")
     with futures.ProcessPoolExecutor(max_workers=3) as pool:
-        for i in range(100):
+        for i in range(100000):
             loop.run_in_executor(pool, blocking_io)
 
-    loop.close()
     print_info(f"finished at {time.strftime('%X')}")
 
 

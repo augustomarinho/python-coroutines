@@ -11,7 +11,7 @@ from util.measure import measure_performance
 async def main():
     print("Case 7_3")
     print_info(f"started at {time.strftime('%X')}")
-    for i in range(100):
+    for i in range(100000):
         await async_blocking_io()
 
     print_info(f"finished at {time.strftime('%X')}")
