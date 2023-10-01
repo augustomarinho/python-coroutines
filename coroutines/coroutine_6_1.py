@@ -7,10 +7,6 @@ from util.console import print_info
 from util.measure import measure_performance
 
 
-def run_async_function(loop):
-    loop.run_until_complete(block_cpu(1000))
-
-
 @measure_performance
 async def main():
     loop = asyncio.get_event_loop()
