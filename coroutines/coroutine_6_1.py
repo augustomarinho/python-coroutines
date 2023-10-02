@@ -2,7 +2,7 @@ import asyncio
 import time
 from concurrent import futures
 
-from core.cpu_bound import block_cpu
+from core.cpu_bound import blocking_cpu
 from util.console import print_info
 from util.measure import measure_performance
 
@@ -16,7 +16,7 @@ async def main():
     with futures.ThreadPoolExecutor(max_workers=3,
                                     thread_name_prefix="custom") as pool:
         for i in range(100000):
-            loop.run_in_executor(pool, block_cpu, 1000)
+            loop.run_in_executor(pool, blocking_cpu, 1000)
 
     print_info(f"finished at {time.strftime('%X')}")
 

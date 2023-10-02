@@ -5,7 +5,7 @@ from concurrent import futures
 import uvicorn
 from fastapi import FastAPI
 
-from core.cpu_bound import block_cpu, async_block_cpu
+from core.cpu_bound import blocking_cpu, async_blocking_cpu
 from core.io_bound import blocking_io, async_blocking_io
 from util.console import print_info
 
@@ -18,7 +18,7 @@ process_pool = futures.ProcessPoolExecutor(max_workers=10)
 async def async_cpu_bound_6():
     print_info(f"started at {time.strftime('%X')}")
     for i in range(100):
-        await asyncio.to_thread(block_cpu, 1000)
+        await asyncio.to_thread(blocking_cpu, 1000)
     print_info(f"finished at {time.strftime('%X')}")
 
     return {"message": "completed"}
@@ -30,7 +30,7 @@ async def async_cpu_bound_6_1():
 
     print_info(f"started at {time.strftime('%X')}")
     for i in range(100):
-        loop.run_in_executor(thread_pool, block_cpu, 1000)
+        loop.run_in_executor(thread_pool, blocking_cpu, 1000)
 
     print_info(f"finished at {time.strftime('%X')}")
 
@@ -43,7 +43,7 @@ async def async_cpu_bound_6_2():
 
     print_info(f"started at {time.strftime('%X')}")
     for i in range(100):
-        loop.run_in_executor(process_pool, block_cpu, 1000)
+        loop.run_in_executor(process_pool, blocking_cpu, 1000)
 
     print_info(f"finished at {time.strftime('%X')}")
 
@@ -54,7 +54,7 @@ async def async_cpu_bound_6_2():
 async def async_cpu_bound_6_3():
     print_info(f"started at {time.strftime('%X')}")
     for i in range(100):
-        await async_block_cpu(1000)
+        await async_blocking_cpu(1000)
     print_info(f"finished at {time.strftime('%X')}")
 
     return {"message": "completed"}
